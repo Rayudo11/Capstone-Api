@@ -61,20 +61,20 @@ app.get('/clients/:id', (req,res) => {
 
 //Add Client//
 // app.get('/addclient',callIn.add);
- app.get('/addclient', (req,res) => {
-    let post = {customer_id:'6', customer_name: 'Lea', email:'Lea200@gmail.com', city: 'England', state: 'No', zip_code: '52341', password: 'Leaisawesome1'};
-    let sql = 'INSERT INTO clients SET ?';
-   pool.query(sql, post, (err, rows) => {
-     if(err){
-         return res.json({'error': true,
-     'message': 'Error occured ' + err
-           })
-     }else{
-         res.json(rows)
-         console.log('new client added...')
-     }
-   })
- })
+//  app.get('/addclient', (req,res) => {
+//     let post = {customer_id:'6', customer_name: 'Lea', email:'Lea200@gmail.com', city: 'England', state: 'No', zip_code: '52341', password: 'Leaisawesome1'};
+//     let sql = 'INSERT INTO clients SET ?';
+//    pool.query(sql, post, (err, rows) => {
+//      if(err){
+//          return res.json({'error': true,
+//      'message': 'Error occured ' + err
+//            })
+//      }else{
+//          res.json(rows)
+//          console.log('new client added...')
+//      }
+//    })
+//  })
 
 //Get All consultations//
 app.get('/consultations/', (req,res) => {
