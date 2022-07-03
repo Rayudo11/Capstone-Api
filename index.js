@@ -4,14 +4,15 @@ const mysql = require('mysql')
 const connection = require('./sql/connection')
 const users = require('./routers/users')
 const Pool = require('mysql/lib/Pool')
-const PORT = process.env.PORT || 3330;
+const callIn = require("./controllers/login");
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
 
 //Create Connection//
 let pool = mysql.createPool({
-    connectionLimit: 100,
+    connectionLimit: 1000,
     connectTimeout  : 60 * 60 * 1000,
     acquireTimeout  : 60 * 60 * 1000,
     timeout         : 60 * 60 * 1000,
@@ -25,7 +26,8 @@ let pool = mysql.createPool({
 
 
 
-//Get All Clients//
+//Get All Clients// 
+// app.get("/clients", callIn.list);
 app.get('/clients', (req,res) => {
     pool.query('SELECT * FROM clients;' , function( err, rows) {
         if(err){
@@ -34,13 +36,15 @@ app.get('/clients', (req,res) => {
             })
         }else {
             res.json(rows)
-            console.log('Here is the Customer Ids')
+            console.log(req.body)
+            console.log('Here are the clients')
         }
     })
 })
 
 
 //GET single client by customer Id //
+// app.get('/clients/:id', callIn.show);
 app.get('/clients/:id', (req,res) => {
     let sql = `SELECT * FROM clients WHERE customer_id = ${req.params.id}`;
     pool.query(sql , function( err, results) {
@@ -56,7 +60,8 @@ app.get('/clients/:id', (req,res) => {
 })
 
 //Add Client//
-app.get('/addclient', (req,res) => {
+// app.get('/addclient',callIn.add);
+ app.get('/addclient', (req,res) => {
     let post = {customer_id:'6', customer_name: 'Lea', email:'Lea200@gmail.com', city: 'England', state: 'No', zip_code: '52341', password: 'Leaisawesome1'};
     let sql = 'INSERT INTO clients SET ?';
    pool.query(sql, post, (err, rows) => {

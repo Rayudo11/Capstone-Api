@@ -1,11 +1,23 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
+
+require('dotenv').config();
+
+
+
+const {PORT,
+    HOST,
+    USER,
+    PASSWORD,
+    DATABASE
+} = process.env;
 
 
 const connection = mysql.createConnection({
-    host: "capstonedb2.ci8hykfduhvx.us-east-2.rds.amazonaws.com",
-    user: 'admin',
-    password: 'rayudo11',
-    database: 'capstone'
+    host: HOST,
+    user: USER,
+    password: PASSWORD,
+    database: DATABASE,
+    port: PORT
 })
 
-module.export = connection;
+module.exports = connection;
