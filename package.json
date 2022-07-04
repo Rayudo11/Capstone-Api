@@ -3,18 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js"
+    "start": "node index.js",
+    "start:dev": "nodemon ./index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16"
   },
   "keywords": [],
-  "description": "",
-  "devDependencies": {
-    "dotenv": "^16.0.1"
-  }
+  "description": ""
 }
